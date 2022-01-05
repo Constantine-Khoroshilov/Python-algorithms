@@ -1,3 +1,5 @@
+# Квадратичные сортировки
+
 def selection_sort(A:list):
   N = len(A)
   for k in range(0, N-1):
@@ -13,6 +15,8 @@ def bubble_sort(A:list):
       if A[n] > A[n+1]:
         A[n+1], A[n] = A[n], A[n+1]
 
+
+# Циклические сдвиги
 
 def left_shift(A:list):
   N = len(A)
