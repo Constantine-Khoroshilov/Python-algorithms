@@ -58,33 +58,28 @@ def mergeSort(A:list):
   mergeSort(R)
 
   # сортирующее действие совершается на обратном ходу
-  def merge(L:list, R:list) -> list:
-    mergeList = []
-    l = r = 0
+  mergeList = []
+  l = r = 0
     
-    while l < len(L) and r < len(R):
-      # усточивость
-      if L[l] <= R[r]:
-        mergeList.append(L[l])
-        l += 1
-      else:
-        mergeList.append(R[r])
-        r += 1
-
-    while l < len(L):
+  while l < len(L) and r < len(R):
+    # усточивость
+    if L[l] <= R[r]:
       mergeList.append(L[l])
       l += 1
-    while r < len(R):
+    else:
       mergeList.append(R[r])
       r += 1
-    
-    return mergeList
 
-  # L и R отсортированы и объединены
-  C = merge(L, R)
+  while l < len(L):
+    mergeList.append(L[l])
+    l += 1
+  while r < len(R):
+    mergeList.append(R[r])
+    r += 1
+    
   # не потерять связь с исходным списком!
   for k in range(len(A)):
-    A[k] = C[k]
+    A[k] = mergeList[k]
 
   
     
