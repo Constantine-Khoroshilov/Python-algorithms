@@ -81,7 +81,7 @@ def mergeSort(A:list):
     return mergeList
 
   # L и R отсортированы и объединены
-  C = (merge(L, R))
+  C = merge(L, R)
   # не потерять связь с исходным списком!
   for k in range(len(A)):
     A[k] = C[k]
