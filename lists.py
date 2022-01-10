@@ -44,20 +44,19 @@ def cycleShift(A:list, count:int=1, direction:bool=True):
 # Рекурсивные алгоритмы сортировки
 
 def mergeSort(A:list):
-  # крайний случай
-  if len(A) <= 1:
+  N = len(A)
+  if N <= 1:
     return
 
   # деление массива
-  middle = len(A) // 2
-  L = [ A[k] for k in range(middle) ]
-  R = [ A[k] for k in range(middle, len(A)) ]
+  L = [ A[k] for k in range(N//2) ]
+  R = [ A[k] for k in range(N//2, N) ]
 
   # рекуррентный вызов (дальнейшее деление массива)
   mergeSort(L)
   mergeSort(R)
 
-  # сортирующее действие совершается на обратном ходу
+  # !!! сортирующее действие совершается на обратном ходу
   mergeList = []
   l = r = 0
     
@@ -78,7 +77,7 @@ def mergeSort(A:list):
     r += 1
     
   # не потерять связь с исходным списком!
-  for k in range(len(A)):
+  for k in range(N):
     A[k] = mergeList[k]
 
   
