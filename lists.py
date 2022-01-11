@@ -17,6 +17,15 @@ def bubbleSort(A:list):
 
 
 
+# Инвертация списка
+
+def reverseList(A:list):
+  N = len(A)
+  for k in range(N//2):
+    A[k], A[N-1-k] = A[N-1-k], A[k]
+
+
+
 # Циклический сдвиг
 
 def cycleShift(A:list, count:int=1, direction:bool=True):
@@ -57,28 +66,27 @@ def mergeSort(A:list):
   mergeSort(R)
 
   # !!! сортирующее действие совершается на обратном ходу
-  mergeList = []
-  l = r = 0
-    
+  r = l = a = 0
+
   while l < len(L) and r < len(R):
     # усточивость
     if L[l] <= R[r]:
-      mergeList.append(L[l])
+      A[a] = L[l]
       l += 1
+      a += 1
     else:
-      mergeList.append(R[r])
+      A[a] = R[r]
       r += 1
+      a += 1
 
   while l < len(L):
-    mergeList.append(L[l])
+    A[a] = L[l]
     l += 1
+    a += 1
   while r < len(R):
-    mergeList.append(R[r])
+    A[a] = R[r]
     r += 1
-    
-  # не потерять связь с исходным списком!
-  for k in range(N):
-    A[k] = mergeList[k]
+    a += 1
 
   
     
