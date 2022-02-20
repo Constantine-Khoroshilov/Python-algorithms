@@ -1,3 +1,5 @@
+# Быстрое возведение в степень
+
 def pow(a:float, n:int) -> float:
   assert n >= 0, "n ≥ 0"
   
