@@ -1,5 +1,13 @@
 # Квадратичные сортировки
 
+def insertionSort(A:list):
+  N = len(A)
+  for k in range(1, N):
+    while k > 0 and A[k-1] > A[k]:
+      A[k], A[k-1] = A[k-1], A[k]
+      k -= 1
+
+
 def selectionSort(A:list):
   N = len(A)
   for k in range(0, N-1):
