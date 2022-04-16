@@ -34,6 +34,21 @@ def reverseList(A:list):
 
 
 
+# Проверка отсортированности за О(N)
+
+def isSorted(A, ascending = True):
+  # sign - множитель, к-ый принимает только значения 1 или -1.
+  # Это нужно для того, чтобы менять знак сравнения в условии
+  # в зависимости от значения ascending (по возрастанию или убыванию)
+  sign = 2 * int(ascending) - 1
+  
+  for k in range(len(A)-1):
+    if sign * A[k] > sign * A[k+1]:
+      return False
+  return True
+
+
+
 # Циклический сдвиг
 
 def cycleShift(A:list, count:int=1, direction:bool=True):
@@ -78,6 +93,7 @@ def mergeSort(A:list):
 
   while l < len(L) and r < len(R):
     # усточивость
+    # (не меняет исходный порядок равных элементов)
     if L[l] <= R[r]:
       A[a] = L[l]
       l += 1
@@ -95,6 +111,33 @@ def mergeSort(A:list):
     A[a] = R[r]
     r += 1
     a += 1
+
+
+# с использованием доп. памяти
+def quickSort(A:list):
+  if len(A) <= 1:
+    return
+
+  barrier = A[0]
+  L = []
+  M = []
+  R = []
+  
+  for x in A:
+    if x < barrier:
+      L.append(x)
+    elif x == barrier:
+      M.append(x)
+    else: 
+      R.append(x)
+
+  quickSort(L)
+  quickSort(R)
+
+  k = 0
+  for x in L + M + R:
+    A[k] = x
+    k += 1
 
   
     
