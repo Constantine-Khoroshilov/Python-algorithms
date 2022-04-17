@@ -80,20 +80,17 @@ def mergeSort(A:list):
   if N <= 1:
     return
 
-  # деление массива
   L = [ A[k] for k in range(N//2) ]
   R = [ A[k] for k in range(N//2, N) ]
 
-  # рекуррентный вызов (дальнейшее деление массива)
   mergeSort(L)
   mergeSort(R)
 
-  # !!! сортирующее действие совершается на обратном ходу
+  # сортирующее действие (обратный ход рекурсии)
   r = l = a = 0
 
   while l < len(L) and r < len(R):
-    # усточивость
-    # (не меняет исходный порядок равных элементов)
+    # усточивость - не меняет исходный порядок равных элементов
     if L[l] <= R[r]:
       A[a] = L[l]
       l += 1
@@ -113,32 +110,33 @@ def mergeSort(A:list):
     a += 1
 
 
-# с использованием доп. памяти
-def quickSort(A:list):
-  if len(A) <= 1:
+def qsort(A:list, start=0, end=0):
+  if end == 0:
+    end = len(A)-1
+    
+  if not end > start:
     return
 
-  barrier = A[0]
-  L = []
-  M = []
-  R = []
+  # баррьерный элемент
+  pivot = A[start]
+  # указатели
+  L = start
+  R = end
+
+  # сортирующее действие (прямой ход рекурсии)
+  while L < R:
+    while A[L] < pivot:
+      L += 1
+    while A[R] > pivot:
+      R -= 1
+
+    A[L], A[R] = A[R], A[L]
+
+  qsort(A, start, L-1)
+  qsort(A, R+1, end)
+
   
-  for x in A:
-    if x < barrier:
-      L.append(x)
-    elif x == barrier:
-      M.append(x)
-    else: 
-      R.append(x)
-
-  quickSort(L)
-  quickSort(R)
-
-  k = 0
-  for x in L + M + R:
-    A[k] = x
-    k += 1
-
+  
   
     
 
