@@ -110,10 +110,7 @@ def mergeSort(A:list):
     a += 1
 
 
-def qsort(A:list, start=0, end=0):
-  if end == 0:
-    end = len(A)-1
-    
+def qsort(A:list, start:int, end:int):
   if not end > start:
     return
 
